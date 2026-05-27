@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨境物流策略模型作品集 - 郭雅宁</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf3 100%);
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2E75B6 0%, #1f4e79 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-top: 8px;
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .section { margin-bottom: 40px; }
+        .section-title {
+            font-size: 22px;
+            color: #2E75B6;
+            border-left: 5px solid #2E75B6;
+            padding-left: 15px;
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .badge {
+            font-size: 13px;
+            background: #2E75B6;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: normal;
+        }
+        .intro {
+            background: #f8f9fb;
+            border-left: 4px solid #2E75B6;
+            padding: 18px 22px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+            color: #34495e;
+        }
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+        @media (max-width: 768px) {
+            .model-grid { grid-template-columns: 1fr; }
+        }
+        .model-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            padding: 22px;
+            transition: all 0.3s;
+        }
+        .model-card:hover {
+            border-color: #2E75B6;
+            box-shadow: 0 6px 20px rgba(46,117,182,0.15);
+            transform: translateY(-3px);
+        }
+        .model-card.primary {
+            border-color: #2E75B6;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7fc 100%);
+        }
+        .model-card h3 {
+            color: #1f4e79;
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .model-card .icon { font-size: 24px; }
+        .model-card .desc {
+            color: #5a6c7d;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 10px 0;
+        }
+        .model-card .sheets {
+            background: #f0f4f8;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #4a5568;
+            margin: 12px 0;
+        }
+        .model-card .sheets strong { color: #2E75B6; }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .open-btn, .preview-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .open-btn {
+            background: #2E75B6;
+            color: white;
+        }
+        .open-btn:hover { background: #1f4e79; }
+        .preview-btn {
+            background: white;
+            color: #2E75B6;
+            border: 2px solid #2E75B6;
+        }
+        .preview-btn:hover { background: #2E75B6; color: white; }
+        .feature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .feature-table th {
+            background: #2E75B6;
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: bold;
+        }
+        .feature-table td {
+            border: 1px solid #e1e8ed;
+            padding: 11px 14px;
+            background: white;
+        }
+        .feature-table tr:nth-child(even) td { background: #f8f9fb; }
+        .formula-box {
+            background: #f8f9fb;
+            border-left: 4px solid #2E75B6;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+        .formula-box .formula-title {
+            font-weight: bold;
+            color: #2E75B6;
+            margin-bottom: 6px;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8f4fc;
+            color: #2E75B6;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin: 2px 4px 2px 0;
+            border: 1px solid #c5e0f5;
+        }
+        .tag.green { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .tag.yellow { background: #fff3cd; color: #856404; border-color: #ffeaa7; }
+        .tag.red { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .tips {
+            background: #fff8e7;
+            border-left: 4px solid #f39c12;
+            padding: 18px 22px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tips strong { color: #d68910; }
+        .tips ul { margin: 8px 0 0 20px; padding: 0; }
+        .tips li { margin: 4px 0; }
+        .footer {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 13px;
+            padding: 20px 0;
+            border-top: 1px solid #e1e8ed;
+            margin-top: 30px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #2E75B6 0%, #1f4e79 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-card .num {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .stat-card .label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 跨境物流策略模型作品集</h1>
+            <div class="subtitle">郭雅宁 · 数据分析师 · 跨境物流与供应链方向</div>
+        </div>
+
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card"><div class="num">4</div><div class="label">核心策略模型</div></div>
+                <div class="stat-card"><div class="num">580+</div><div class="label">Excel公式</div></div>
+                <div class="stat-card"><div class="num">20</div><div class="label">分析工作表</div></div>
+                <div class="stat-card"><div class="num">100%</div><div class="label">参数可调</div></div>
+            </div>
+
+            <div class="intro">
+                <strong>📌 作品集介绍：</strong>本作品集为 <strong>个人学习作品集</strong>，围绕跨境电商物流场景，自学并构建了 <strong>补货策略、库存周转、物流时效、物流成本</strong> 四大策略模型。模型参考公开行业资料中的物流路线（美西/美东/欧洲/东南亚/日韩）和主流渠道（海运/空运/铁运 + USPS/FedEx/DPD/UPS等），数据为<strong>模拟学习数据</strong>。模型使用 <strong>纯Excel公式</strong> 构建，所有参数可调、公式透明、配三色预警，用于个人学习与能力展示。
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    🎯 四大核心策略模型
+                    <span class="badge">个人学习作品</span>
+                </div>
+
+                <div class="model-grid">
+                    <div class="model-card primary">
+                        <h3><span class="icon">📦</span>补货策略模型</h3>
+                        <div class="desc">基于安全库存理论 + EOQ经济订货批量，构建激进型/平衡型/保守型三套补货策略，配三色预警自动判断库存状态。</div>
+                        <div class="sheets">
+                            <strong>5个工作表：</strong>参数输入 → 补货计算 → 策略对比 → 敏感度分析 → 使用说明<br>
+                            <strong>核心算法：</strong>SS=Z×σ×√L、ROP、EOQ、TRC
+                        </div>
+                        <div>
+                            <span class="tag green">🟢 充足</span>
+                            <span class="tag yellow">🟡 建议补货</span>
+                            <span class="tag red">🔴 紧急补货</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="models/replenishment_strategy.xlsx" class="open-btn" download>📥 下载模型</a>
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2FYOUR_USERNAME.github.io%2FYOUR_REPO%2Fmodels%2Freplenishment_strategy.xlsx" class="preview-btn" target="_blank">👁️ 在线预览</a>
+                        </div>
+                    </div>
+
+                    <div class="model-card primary">
+                        <h3><span class="icon">🔄</span>库存周转策略模型</h3>
+                        <div class="desc">基于库存周转率、可卖天数、ABC分类等指标，评估库存健康度，提供分品类管理策略和库龄分析。</div>
+                        <div class="sheets">
+                            <strong>5个工作表：</strong>参数输入 → 周转计算 → 策略对比 → 敏感度分析 → 使用说明<br>
+                            <strong>核心算法：</strong>周转率、周转天数、ABC分类、库龄占比、持有成本
+                        </div>
+                        <div>
+                            <span class="tag">10个SKU示例</span>
+                            <span class="tag">ABC分类</span>
+                            <span class="tag">4级健康度</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="models/inventory_turnover.xlsx" class="open-btn" download>📥 下载模型</a>
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2FYOUR_USERNAME.github.io%2FYOUR_REPO%2Fmodels%2Finventory_turnover.xlsx" class="preview-btn" target="_blank">👁️ 在线预览</a>
+                        </div>
+                    </div>
+
+                    <div class="model-card primary">
+                        <h3><span class="icon">⏱️</span>物流时效策略模型</h3>
+                        <div class="desc">覆盖5大区域13条头程路线+10条尾程渠道，计算头程+尾程全链路时效，支持时效成本综合评分。</div>
+                        <div class="sheets">
+                            <strong>5个工作表：</strong>参数输入 → 时效计算 → 策略对比 → 敏感度分析 → 使用说明<br>
+                            <strong>核心算法：</strong>全链路时效、综合评分=时效权重×时效分+成本权重×成本分
+                        </div>
+                        <div>
+                            <span class="tag">美西/美东</span>
+                            <span class="tag">欧洲</span>
+                            <span class="tag">东南亚/日韩</span>
+                            <span class="tag">海运/空运/铁运</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="models/logistics_leadtime.xlsx" class="open-btn" download>📥 下载模型</a>
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2FYOUR_USERNAME.github.io%2FYOUR_REPO%2Fmodels%2Flogistics_leadtime.xlsx" class="preview-btn" target="_blank">👁️ 在线预览</a>
+                        </div>
+                    </div>
+
+                    <div class="model-card primary">
+                        <h3><span class="icon">💰</span>物流成本策略模型</h3>
+                        <div class="desc">分解头程+尾程+仓储+操作+管理+资金6大成本项，支持成本优先/平衡/时效优先三种策略对比及批量影响分析。</div>
+                        <div class="sheets">
+                            <strong>6个工作表：</strong>参数输入 → 成本计算 → 策略对比 → 敏感度分析 → 策略说明 → 注意点<br>
+                            <strong>核心算法：</strong>头程成本=单价×重量+固定成本÷批量、尾程首重续重逻辑
+                        </div>
+                        <div>
+                            <span class="tag">8条头程渠道</span>
+                            <span class="tag">6条尾程渠道</span>
+                            <span class="tag">批量分摊分析</span>
+                        </div>
+                        <div class="btn-group">
+                            <a href="models/logistics_cost.xlsx" class="open-btn" download>📥 下载模型</a>
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2FYOUR_USERNAME.github.io%2FYOUR_REPO%2Fmodels%2Flogistics_cost.xlsx" class="preview-btn" target="_blank">👁️ 在线预览</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📋 模型规格对比</div>
+                <table class="feature-table">
+                    <thead>
+                        <tr>
+                            <th>模型名称</th>
+                            <th>文件大小</th>
+                            <th>工作表</th>
+                            <th>公式数</th>
+                            <th>覆盖维度</th>
+                            <th>主要业务场景</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>📦 补货策略模型</strong></td><td>36 KB</td><td>5个</td><td>98个</td><td>3种策略</td><td>判断何时补货、补多少</td></tr>
+                        <tr><td><strong>🔄 库存周转策略模型</strong></td><td>66 KB</td><td>5个</td><td>140个</td><td>10个SKU + ABC分类</td><td>评估库存健康度、识别滞销</td></tr>
+                        <tr><td><strong>⏱️ 物流时效策略模型</strong></td><td>39 KB</td><td>5个</td><td>213个</td><td>13条头程 + 10条尾程</td><td>选择最优渠道组合</td></tr>
+                        <tr><td><strong>💰 物流成本策略模型</strong></td><td>14 KB</td><td>6个</td><td>131个</td><td>8条头程 + 6条尾程</td><td>降本分析、批量优化</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🧮 核心公式速查</div>
+
+                <div class="formula-box">
+                    <div class="formula-title">📦 补货策略 - 安全库存（SS）</div>
+                    SS = Z × σ_d × √L<br>
+                    <span style="color:#7f8c8d;">说明：Z=服务水平Z值(95%=1.65)，σ_d=日需求标准差，L=补货周期</span>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">📦 补货策略 - 再订货点（ROP）</div>
+                    ROP = d̄ × L + SS<br>
+                    <span style="color:#7f8c8d;">说明：d̄=日均销量，L=补货周期，SS=安全库存</span>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">📦 补货策略 - 经济订货批量（EOQ）</div>
+                    EOQ = √(2DS / H)<br>
+                    <span style="color:#7f8c8d;">说明：D=年需求，S=单次订货成本，H=单件年持有成本</span>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">🔄 库存周转率</div>
+                    库存周转率 = 月销量 ÷ 月平均库存<br>
+                    周转天数 = 30 ÷ 周转率<br>
+                    可卖天数 = (当前库存+在途库存) ÷ 日均销量
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">⏱️ 物流时效 - 全链路时效</div>
+                    全链路时效 = 头程时效 + 尾程时效<br>
+                    综合评分 = 时效权重 × 时效评分 + 成本权重 × 成本评分
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">💰 物流成本 - 单件成本</div>
+                    头程单件成本 = (单价 × 重量) + (固定成本 ÷ 单批次发货量)<br>
+                    尾程单件成本 = IF(重量≤首重, 首重价格, 首重价格 + (重量-首重) × 续重单价)
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">💡 使用提示</div>
+                <div class="tips">
+                    <strong>📌 模型使用：</strong>
+                    <ul>
+                        <li><strong>📥 下载模型</strong>：点击下载按钮把 .xlsx 文件保存到本地，用 Excel/WPS 打开（推荐）</li>
+                        <li><strong>👁️ 在线预览</strong>：通过 Microsoft Office Online 在浏览器中查看（部分公式可能显示有限制）</li>
+                        <li>所有模型均使用 <strong>纯Excel公式</strong> 构建，无VBA、无宏，安全可靠</li>
+                        <li>在每个模型的【参数输入】Sheet 修改参数，其他Sheet会<strong>自动联动更新</strong></li>
+                        <li>每个模型都内置【使用说明】Sheet，开箱即用</li>
+                        <li>所有数据均为 <strong>模拟学习数据</strong>，可自行修改参数进行假设分析</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>📅 最后更新：2026年5月27日</p>
+                <p>© 2026 郭雅宁 · 跨境物流策略模型作品集 · 个人学习作品</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
