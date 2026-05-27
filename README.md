@@ -13,7 +13,7 @@
 
 ## 🌐 在线访问
 
-👉 **[点此查看在线作品集](https://YOUR_USERNAME.github.io/YOUR_REPO/)**
+👉 **[点此查看在线作品集](https://guoyaning-git.github.io/model_portfolio/)**
 
 ## 📂 文件结构
 
